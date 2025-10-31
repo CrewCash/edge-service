@@ -1,0 +1,57 @@
+plugins {
+	java
+	id("org.springframework.boot") version "3.5.7"
+	id("io.spring.dependency-management") version "1.1.7"
+}
+
+group = "com.crewcash"
+version = "0.0.1-SNAPSHOT"
+description = "Edge Service for CrewCash"
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+extra["springCloudVersion"] = "2025.0.0"
+extra["testcontainersVersion"] = "1.18.3"
+extra["otelVersion"] = "1.33.0"
+
+val springCloudVersion: String by project
+val testcontainersVersion: String by project
+val otelVersion: String by project
+
+dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j")
+	implementation("org.springframework.cloud:spring-cloud-starter-config")
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+	implementation("org.springframework.session:spring-session-data-redis")
+
+	runtimeOnly("io.github.resilience4j:resilience4j-micrometer")
+	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
+	runtimeOnly("io.opentelemetry.javaagent:opentelemetry-javaagent:$otelVersion")
+
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
+	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("org.testcontainers:junit-jupiter")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom("org.testcontainers:testcontainers-bom:$testcontainersVersion")
+		mavenBom("org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion")
+	}
+}
+
+tasks.withType<Test> {
+	useJUnitPlatform()
+}
