@@ -19,26 +19,34 @@ repositories {
 }
 
 extra["springCloudVersion"] = "2025.0.0"
-extra["testcontainersVersion"] = "1.18.3"
-extra["otelVersion"] = "1.33.0"
+extra["testcontainersVersion"] = "1.19.8"
+extra["otelVersion"] = "2.21.0"
 
 val springCloudVersion: String by project
 val testcontainersVersion: String by project
 val otelVersion: String by project
 
 dependencies {
+	// Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+
+	// Spring Cloud
 	implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j")
 	implementation("org.springframework.cloud:spring-cloud-starter-config")
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation("org.springframework.session:spring-session-data-redis")
 
+	// MacOS Apple Silicon (opzionale)
+	// runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.101.Final:osx-aarch_64")
+
+	// Runtime
 	runtimeOnly("io.github.resilience4j:resilience4j-micrometer")
 	runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 	runtimeOnly("io.opentelemetry.javaagent:opentelemetry-javaagent:$otelVersion")
 
+	// Test
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("io.projectreactor:reactor-test")
