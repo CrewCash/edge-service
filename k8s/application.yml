@@ -1,0 +1,9 @@
+spring:
+  redis:
+    host: crewcash-redis
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://crewcash-keycloak/realms/CrewCash
