@@ -37,7 +37,7 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation("org.springframework.session:spring-session-data-redis")
 
-	// MacOS Apple Silicon (opzionale)
+	// MacOS Apple Silicon
 	// runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.101.Final:osx-aarch_64")
 
 	// Runtime
@@ -61,4 +61,8 @@ dependencyManagement {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.named<Jar>("jar") {
+    enabled = false
 }
