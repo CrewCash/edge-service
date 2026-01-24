@@ -5,6 +5,7 @@ plugins {
 	id("checkstyle")
 	id("pmd")
 	id("com.github.spotbugs") version "5.2.3"
+	id("com.diffplug.spotless") version "6.25.0"
 }
 
 group = "com.crewcash"
@@ -62,14 +63,6 @@ dependencyManagement {
 	}
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
-
-tasks.named<Jar>("jar") {
-    enabled = false
-}
-
 checkstyle {
     toolVersion = "10.15.0"
     configFile = file("${rootProject.projectDir}/config/checkstyle/checkstyle.xml")
@@ -81,4 +74,35 @@ pmd {
 
 spotbugs {
     toolVersion = "4.8.3"
+}
+
+spotless {
+	java {
+		target("src/**/*.java")
+		targetExclude(
+			"**/build/**",
+			"**/generated/**"
+		)
+
+		googleJavaFormat()
+		removeUnusedImports()
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+}
+
+tasks.withType<Test> {
+	useJUnitPlatform()
+}
+
+tasks.named<Jar>("jar") {
+    enabled = false
+}
+
+tasks.named("compileJava") {
+	dependsOn("spotlessApply")
+}
+
+tasks.withType<Checkstyle>().configureEach {
+	dependsOn("spotlessApply")
 }
