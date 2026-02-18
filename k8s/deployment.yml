@@ -36,7 +36,7 @@ spec:
             - name: PAYMENT_SERVICE_URL
               value: http://payment-service
             - name: SPA_URL
-              value: http://crewcash-ui
+              value: http://habitquest-ui
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness

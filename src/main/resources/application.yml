@@ -83,18 +83,18 @@ spring:
     store-type: redis
     timeout: 10m
     redis:
-      namespace: crewcash:edge
+      namespace: habitquest:edge
   security:
     oauth2:
       client:
         registration:
           keycloak:
             client-id: edge-service
-            client-secret: crewcash-keycloak-secret
+            client-secret: habitquest-keycloak-secret
             scope: openid,roles
         provider:
           keycloak:
-            issuer-uri: http://localhost:8080/realms/CrewCash
+            issuer-uri: http://localhost:8080/realms/habitquest
 
 resilience4j:
   circuitbreaker:
@@ -118,7 +118,7 @@ logging:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
 
 info:
-  system: CrewCash
+  system: habitquest
 
 management:
   endpoints:

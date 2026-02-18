@@ -8,9 +8,9 @@ plugins {
 	id("com.diffplug.spotless") version "6.25.0"
 }
 
-group = "com.crewcash"
+group = "habitquest"
 version = "0.0.1-SNAPSHOT"
-description = "Edge Service for CrewCash"
+description = "Edge Service for habitquest"
 
 java {
 	toolchain {

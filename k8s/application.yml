@@ -1,9 +1,9 @@
 spring:
   redis:
-    host: crewcash-redis
+    host: habitquest-redis
   security:
     oauth2:
       client:
         provider:
           keycloak:
-            issuer-uri: http://crewcash-keycloak/realms/CrewCash
+            issuer-uri: http://habitquest-keycloak/realms/habitquest

@@ -1,10 +1,9 @@
 name: Semantic Release
 
 on:
-  push:
-    branches:
-      - main
-      - master
+  workflow_run:
+    workflows: ['Build and Package']
+    types: [completed]
 
 permissions:
   contents: write
@@ -14,7 +13,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: crewcash/edge-service
+  IMAGE_NAME: myhabitquest/edge-service
 
 jobs:
   release:

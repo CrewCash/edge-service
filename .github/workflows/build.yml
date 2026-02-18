@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: crewcash/edge-service
+  IMAGE_NAME: myhabitquest/edge-service
   VERSION: ${{ github.sha }}
 
 jobs:

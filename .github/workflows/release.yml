@@ -6,10 +6,10 @@ on:
 concurrency: release
 
 env:
-  OWNER: crewcash
+  OWNER: myhabitquest
   REGISTRY: ghcr.io
   APP_REPO: edge-service
-  DEPLOY_REPO: crewcash-deployment
+  DEPLOY_REPO: myhabitquest-deployment
   VERSION: ${{ github.sha }}
 
 jobs:
