@@ -9,7 +9,7 @@ env:
   OWNER: myhabitquest
   REGISTRY: ghcr.io
   APP_REPO: edge-service
-  DEPLOY_REPO: myhabitquest-deployment
+  DEPLOY_REPO: habitquest-deployment
   VERSION: ${{ github.sha }}
 
 jobs:
